@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ExamService {
 
-    List<Question> showAllQuestions();
+    List<Question> getAllQuestions();
 
 }

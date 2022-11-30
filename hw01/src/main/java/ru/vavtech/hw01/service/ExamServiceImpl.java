@@ -12,7 +12,7 @@ public class ExamServiceImpl implements ExamService {
     private final QuestionDAO questionDAO;
 
     @Override
-    public List<Question> showAllQuestions() {
+    public List<Question> getAllQuestions() {
         return questionDAO.getQuestions();
     }
 }
