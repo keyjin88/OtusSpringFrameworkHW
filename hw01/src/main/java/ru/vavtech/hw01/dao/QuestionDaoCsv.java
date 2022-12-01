@@ -8,7 +8,6 @@ import org.springframework.core.io.ClassPathResource;
 import ru.vavtech.hw01.exceptions.QuestionsReadException;
 import ru.vavtech.hw01.model.Question;
 
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class QuestionDaoCsv implements QuestionDAO {
                     .collect(Collectors.toCollection(ArrayList::new));
         } catch (Exception exception) {
             log.error("getQuestions error: {}", exception.getMessage());
-            throw new QuestionsReadException("Ошибка при чтении файла с вопросами.", exception);
+            throw new QuestionsReadException("Can't read file with questions.", exception);
         }
     }
 }
