@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <beans>
+        <bean id="examinationRunner" class="ru.vavtech.hw02.service.ExamRunnerImpl">
+            <constructor-arg name="examService" ref="examService"/>
+            <constructor-arg name="ioService" ref="ioService"/>
+        </bean>
+        <bean id="questionDao" class="ru.vavtech.hw02.dao.QuestionDaoCsv">
+            <constructor-arg name="path" value="/questions.csv"/>
+        </bean>
+        <bean id="examService" class="ru.vavtech.hw02.service.ExamServiceImpl">
+            <constructor-arg name="questionDAO" ref="questionDao"/>
+        </bean>
+        <bean id="ioService" class="ru.vavtech.hw02.service.io.ConsoleIOService">
+            <constructor-arg name="out" type="java.io.PrintStream" value="#{T(System).out}"/>
+        </bean>
+    </beans>
+</beans>
