@@ -1,10 +1,12 @@
 package ru.vavtech.hw02.dao;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 import ru.vavtech.hw02.exceptions.QuestionsReadException;
 import ru.vavtech.hw02.model.Question;
 
@@ -14,9 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@RequiredArgsConstructor
+@Component
+@PropertySource("classpath:application.properties")
 public class QuestionDaoCsv implements QuestionDAO {
-    private final String path;
+    @Value("${path-to-csv}")
+    private String path;
 
     public List<Question> getQuestions() {
         try (var inputStreamReader = new InputStreamReader(new ClassPathResource(path).getInputStream())) {
