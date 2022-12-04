@@ -8,4 +8,6 @@ public interface ExamService {
 
     List<Question> getAllQuestions();
 
+    boolean checkQuestion(Question question, String userAnswer);
+
 }

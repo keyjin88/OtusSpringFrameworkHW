@@ -6,6 +6,7 @@ import ru.vavtech.hw02.dao.QuestionDAO;
 import ru.vavtech.hw02.model.Question;
 
 import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class ExamServiceImpl implements ExamService {
@@ -15,5 +16,11 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public List<Question> getAllQuestions() {
         return questionDAO.getQuestions();
+    }
+
+    @Override
+    public boolean checkQuestion(Question question, String userAnswer) {
+        var correctAnswer = question.getCorrectAnswer();
+        return correctAnswer.equalsIgnoreCase(userAnswer);
     }
 }

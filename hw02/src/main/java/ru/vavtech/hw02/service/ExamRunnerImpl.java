@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.vavtech.hw02.service.io.IOService;
 
-import java.text.MessageFormat;
 @Component
 @RequiredArgsConstructor
 public class ExamRunnerImpl implements ExamRunner {
@@ -13,11 +12,22 @@ public class ExamRunnerImpl implements ExamRunner {
     private final IOService ioService;
 
     @Override
-    public void test() {
-        var questions = examService.getAllQuestions();
-        for (var question : questions) {
-            var message = MessageFormat.format("Question: \"{0}\", Right answer: \"{1}\"", question.getQuestion(), question.getCorrectAnswer());
-            ioService.printString(message);
+    public void examine() {
+        var correctAnswersCount = 0;
+        ioService.printString("Введите ваше имя и фамилию: ");
+        var studentName = ioService.readString();
+        ioService.printString(studentName);
+
+        var allQuestions = examService.getAllQuestions();
+        for (var question : allQuestions) {
+            ioService.printString(question.getQuestion());
+            ioService.printString("Enter your answer: ");
+            var answer = ioService.readString();
+            if (examService.checkQuestion(question, answer)) {
+                correctAnswersCount++;
+            }
         }
+        ioService.printString("Examination completed");
+        ioService.printString("Your score: " + correctAnswersCount);
     }
 }

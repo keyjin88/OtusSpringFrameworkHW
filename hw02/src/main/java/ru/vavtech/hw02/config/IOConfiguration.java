@@ -10,6 +10,6 @@ public class IOConfiguration {
 
     @Bean
     public IOService personDao() {
-        return new ConsoleIOService(System.out);
+        return new ConsoleIOService(System.out, System.in);
     }
 }
