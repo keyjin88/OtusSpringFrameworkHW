@@ -54,6 +54,11 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.assertj/assertj-core
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1'
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.11.0'
+    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.11.0'
 }
 
 tasks.named('test') {

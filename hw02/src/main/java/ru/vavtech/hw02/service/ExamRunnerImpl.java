@@ -9,6 +9,7 @@ import ru.vavtech.hw02.service.io.IOService;
 public class ExamRunnerImpl implements ExamRunner {
 
     private final ExamService examService;
+    private final QuestionService questionService;
     private final IOService ioService;
 
     @Override
@@ -18,7 +19,7 @@ public class ExamRunnerImpl implements ExamRunner {
         var studentName = ioService.readString();
         ioService.printString(studentName);
 
-        var allQuestions = examService.getAllQuestions();
+        var allQuestions = questionService.getAllQuestions();
         for (var question : allQuestions) {
             ioService.printString(question.getQuestion());
             ioService.printString("Enter your answer: ");

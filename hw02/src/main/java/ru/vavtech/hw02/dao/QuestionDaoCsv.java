@@ -17,8 +17,12 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class QuestionDaoCsv implements QuestionDAO {
-    @Value("${path-to-csv}")
-    private String path;
+
+    private final String path;
+
+    public QuestionDaoCsv(@Value("${path-to-csv}") String path) {
+        this.path = path;
+    }
 
     public List<Question> getQuestions() {
         try (var inputStreamReader = new InputStreamReader(new ClassPathResource(path).getInputStream())) {
